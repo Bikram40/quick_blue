@@ -109,7 +109,7 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
       String characteristic,
       Uint8List value,
       BleOutputProperty bleOutputProperty) async {
-    _method.invokeMethod('writeValue', {
+  await _method.invokeMethod('writeValue', {
       'deviceId': deviceId,
       'service': service,
       'characteristic': characteristic,
@@ -128,7 +128,7 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
 
   @override
   Future<int> requestMtu(String deviceId, int expectedMtu) async {
-    _method.invokeMethod('requestMtu', {
+   await _method.invokeMethod('requestMtu', {
       'deviceId': deviceId,
       'expectedMtu': expectedMtu,
     }).then((_) => print('requestMtu invokeMethod success'));
