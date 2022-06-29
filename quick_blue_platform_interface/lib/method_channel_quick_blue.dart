@@ -118,7 +118,8 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
     }).then((_) {
       print('writeValue invokeMethod success');
     }).catchError((onError) {
-      // Characteristic sometimes unavailable on Android
+    print('writeValue invokeMethod error $onError');
+    // Characteristic sometimes unavailable on Android
       throw onError;
     });
   }
