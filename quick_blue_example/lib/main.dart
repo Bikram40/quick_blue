@@ -64,13 +64,13 @@ class _MyAppState extends State<MyApp> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        RaisedButton(
+        TextButton(
           child: Text('startScan'),
           onPressed: () {
             QuickBlue.startScan();
           },
         ),
-        RaisedButton(
+        TextButton(
           child: Text('stopScan'),
           onPressed: () {
             QuickBlue.stopScan();
@@ -90,9 +90,12 @@ class _MyAppState extends State<MyApp> {
               Text('${_scanResults[index].name}(${_scanResults[index].rssi})'),
           subtitle: Text(_scanResults[index].deviceId),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => PeripheralDetailPage(_scanResults[index].deviceId),
-            ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PeripheralDetailPage(_scanResults[index].deviceId),
+                ));
           },
         ),
         separatorBuilder: (context, index) => Divider(),

@@ -88,8 +88,6 @@ class QuickBluePlugin: FlutterPlugin, MethodCallHandler, EventChannel.StreamHand
             .connectGatt(context, false, gattCallback)
           knownGatts.add(gatt)
         }
-
-
         result.success(null)
         // TODO connecting
       }
