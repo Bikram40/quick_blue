@@ -86,6 +86,11 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
       Uint8List value = Uint8List.fromList(
           characteristicValue['value']); // In case of _Uint8ArrayView
       onValueChanged?.call(deviceId, characteristic, value);
+    } else if (message['characteristicWrite'] != null) {
+      var characteristicValue = message['characteristicWrite'];
+      bool value = characteristicValue['value'];
+      String characteristic = characteristicValue['characteristic'];
+      onWriteCharacteristic?.call( characteristic, value);
     } else if (message['mtuConfig'] != null) {
       _mtuConfigController.add(message['mtuConfig']);
     }
@@ -109,7 +114,7 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
       String characteristic,
       Uint8List value,
       BleOutputProperty bleOutputProperty) async {
-    _method.invokeMethod('writeValue', {
+  await _method.invokeMethod('writeValue', {
       'deviceId': deviceId,
       'service': service,
       'characteristic': characteristic,
@@ -118,7 +123,8 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
     }).then((_) {
       print('writeValue invokeMethod success');
     }).catchError((onError) {
-      // Characteristic sometimes unavailable on Android
+    print('writeValue invokeMethod error $onError');
+    // Characteristic sometimes unavailable on Android
       throw onError;
     });
   }
@@ -128,7 +134,7 @@ class MethodChannelQuickBlue extends QuickBluePlatform {
 
   @override
   Future<int> requestMtu(String deviceId, int expectedMtu) async {
-    _method.invokeMethod('requestMtu', {
+   await _method.invokeMethod('requestMtu', {
       'deviceId': deviceId,
       'expectedMtu': expectedMtu,
     }).then((_) => print('requestMtu invokeMethod success'));

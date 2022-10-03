@@ -42,9 +42,12 @@ class QuickBlue {
   static void setValueHandler(OnValueChanged? onValueChanged) {
     QuickBluePlatform.instance.onValueChanged = onValueChanged;
   }
+  static void setWriteCharacteristic(OnWriteCharacteristic? onWriteCharacteristic) {
+    QuickBluePlatform.instance.onWriteCharacteristic = onWriteCharacteristic;
+  }
 
-  static Future<void> writeValue(String deviceId, String service, String characteristic, Uint8List value, BleOutputProperty bleOutputProperty) {
-    return QuickBluePlatform.instance.writeValue(deviceId, service, characteristic, value, bleOutputProperty);
+  static Future<void> writeValue(String deviceId, String service, String characteristic, Uint8List value, BleOutputProperty bleOutputProperty) async {
+    return await QuickBluePlatform.instance.writeValue(deviceId, service, characteristic, value, bleOutputProperty);
   }
 
   static Future<int> requestMtu(String deviceId, int expectedMtu) => QuickBluePlatform.instance.requestMtu(deviceId, expectedMtu);

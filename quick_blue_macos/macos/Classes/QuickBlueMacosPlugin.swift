@@ -226,7 +226,13 @@ extension QuickBlueMacosPlugin: CBPeripheralDelegate {
   }
 
   public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-    print("peripheral:didWriteValueForCharacteristic \(characteristic.uuid.uuidStr) \(characteristic.value as? NSData) error: \(error)")
+    NSLog("peripheral:didWriteValueForCharacteristic \(characteristic.uuid.uuidStr) \(characteristic.value as? NSData) error: \(error)")
+ self.messageConnector.sendMessage([
+      "characteristicWrite": [
+        "characteristic": characteristic.uuid.uuidStr,
+        "value": error==nil
+      ]
+    ])
   }
 
   public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
