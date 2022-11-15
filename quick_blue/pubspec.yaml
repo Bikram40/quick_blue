@@ -16,8 +16,8 @@ dependencies:
     path: ../quick_blue_platform_interface
   quick_blue_macos:
     path: ../quick_blue_macos
-  quick_blue_windows:
-    path: ../quick_blue_windows
+#  quick_blue_windows:
+#    path: ../quick_blue_windows
   convert: ^3.0.0
 
 dev_dependencies:
