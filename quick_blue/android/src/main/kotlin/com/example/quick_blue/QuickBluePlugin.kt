@@ -249,7 +249,7 @@ class QuickBluePlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHan
           if (status != BluetoothGatt.GATT_SUCCESS) return
 
           gatt.services?.forEach { service ->
-            Log.v(TAG, "Service " + service.uuid)
+            Log.v(TAG, "Service" + service.uuid.toString())
             service.characteristics.forEach { characteristic ->
               Log.v(TAG, "    Characteristic ${characteristic.uuid}")
               sendMessage(
